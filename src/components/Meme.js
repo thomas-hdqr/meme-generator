@@ -6,12 +6,26 @@ import React, { useState } from "react";
 export default function Meme() {
 
 
-    const [memeImage, setMemeImage] = React.useState("")
+    const [meme, setMeme] = React.useState({
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg"
+    }) 
+
+
+    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+
+  
+    
 
     function getMemeImage() {
-        const memesArray = memesData.data.memes
+        const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
-        setMemeImage(memesArray[randomNumber].url)
+        const url = memesArray[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImage: url
+        }))
     }
 
     return (
@@ -22,10 +36,10 @@ export default function Meme() {
                     <input className="meme-input-2" type="text"placeholder="Bottom text"></input>
                 </div>
                 <div>
-                    <button className="meme-button gradient" onClick={getMemeImage}>Get a new meme image 🖼</button>
+                    <button className="meme-button gradient" onClick={getMemeImage}>Get new meme image 🖼</button>
                 </div>
                 <div>
-                    <img src={memeImage} alt="" className="meme-image"/>
+                    <img src={meme.randomImage} alt="" className="meme-image"/>
                 </div>
             </div>
         </main>
