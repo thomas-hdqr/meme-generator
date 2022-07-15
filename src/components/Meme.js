@@ -38,8 +38,10 @@ export default function Meme() {
                 <div>
                     <button className="meme-button gradient" onClick={getMemeImage}>Get new meme image 🖼</button>
                 </div>
-                <div>
+                <div className="meme-text">
                     <img src={meme.randomImage} alt="" className="meme-image"/>
+                    <h2 className="meme-text top">{meme.topText}</h2>
+                    <h2 className="meme-text bottom">{meme.bottomText}</h2>
                 </div>
             </div>
         </main>
